@@ -1,10 +1,11 @@
+import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
+import 'package:procurement_management_system_web_frontend/constants.dart' as Constants;
 import 'package:procurement_management_system_web_frontend/models/order.dart';
 import 'package:procurement_management_system_web_frontend/pages/orders.dart';
 import 'package:procurement_management_system_web_frontend/widgets/procurement_drawer.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
 
 class OrderDetails extends StatefulWidget {
   final OrderModal orderModal;
@@ -21,7 +22,7 @@ class OrderDetails extends StatefulWidget {
 class _OrderDetailsState extends State<OrderDetails> {
 
   updateOrderStatusApprove(String id, String val, BuildContext context) async {
-    var url = "http://localhost:8080/api/access/orders/approved/" + id.toString().trim();
+    var url = Constants.BASE_URL + Constants.URL_APPROVED_ORDERS + id.toString().trim();
 
     var response = await http.put(Uri.parse(url),
         headers: <String, String>{"Content-Type": "application/json"});
@@ -30,19 +31,19 @@ class _OrderDetailsState extends State<OrderDetails> {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => Orders()));
       Fluttertoast.showToast(
-          msg: "Order status updated successfully",
+          msg: Constants.ORDER_STATUS_UPDATED_SUCCESSFULLY,
           backgroundColor: Colors.grey,
           fontSize: 18);
     } else {
       Fluttertoast.showToast(
-          msg: "ERROR: Unable to update order status",
+          msg: Constants.ERROR_UPDATE_ORDER,
           backgroundColor: Colors.grey,
           fontSize: 18);
     }
   }
 
   updateOrderStatusHold(String id, String val, BuildContext context) async {
-    var url = "http://localhost:8080/api/access/orders/hold/" + id.toString().trim();
+    var url = Constants.BASE_URL + Constants.URL_HOLD_ORDERS + id.toString().trim();
 
     var response = await http.put(Uri.parse(url),
         headers: <String, String>{"Content-Type": "application/json"});
@@ -51,19 +52,19 @@ class _OrderDetailsState extends State<OrderDetails> {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => Orders()));
       Fluttertoast.showToast(
-          msg: "Order status updated successfully",
+          msg: Constants.ORDER_STATUS_UPDATED_SUCCESSFULLY,
           backgroundColor: Colors.grey,
           fontSize: 18);
     } else {
       Fluttertoast.showToast(
-          msg: "ERROR: Unable to update order status",
+          msg: Constants.ERROR_UPDATE_ORDER,
           backgroundColor: Colors.grey,
           fontSize: 18);
     }
   }
 
   updateOrderStatusRefer(String id, String val, BuildContext context) async {
-    var url = "http://localhost:8080/api/access/orders/referred/" + id.toString().trim();
+    var url = Constants.BASE_URL + Constants.URL_REFERRED_ORDERS + id.toString().trim();
 
     var response = await http.put(Uri.parse(url),
         headers: <String, String>{"Content-Type": "application/json"});
@@ -72,19 +73,19 @@ class _OrderDetailsState extends State<OrderDetails> {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => Orders()));
       Fluttertoast.showToast(
-          msg: "Order status updated successfully",
+          msg: Constants.ORDER_STATUS_UPDATED_SUCCESSFULLY,
           backgroundColor: Colors.grey,
           fontSize: 18);
     } else {
       Fluttertoast.showToast(
-          msg: "ERROR: Unable to update order status",
+          msg: Constants.ERROR_UPDATE_ORDER,
           backgroundColor: Colors.grey,
           fontSize: 18);
     }
   }
 
   updateOrderStatusDecline(String id, String val, BuildContext context) async {
-    var url = "http://localhost:8080/api/access/orders/declined/" + id.toString().trim();
+    var url = Constants.BASE_URL + Constants.URL_DECLINED_ORDERS + id.toString().trim();
 
     var response = await http.put(Uri.parse(url),
         headers: <String, String>{"Content-Type": "application/json"});
@@ -93,12 +94,12 @@ class _OrderDetailsState extends State<OrderDetails> {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => Orders()));
       Fluttertoast.showToast(
-          msg: "Order status updated successfully",
+          msg: Constants.ORDER_STATUS_UPDATED_SUCCESSFULLY,
           backgroundColor: Colors.grey,
           fontSize: 18);
     } else {
       Fluttertoast.showToast(
-          msg: "ERROR: Unable to update order status",
+          msg: Constants.ERROR_UPDATE_ORDER,
           backgroundColor: Colors.grey,
           fontSize: 18);
     }

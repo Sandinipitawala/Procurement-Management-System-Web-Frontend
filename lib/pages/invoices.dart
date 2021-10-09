@@ -1,9 +1,10 @@
+import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:procurement_management_system_web_frontend/constants.dart' as Constants;
 import 'package:procurement_management_system_web_frontend/models/invoice_order.dart';
 import 'package:procurement_management_system_web_frontend/pages/invoice_details.dart';
 import 'package:procurement_management_system_web_frontend/widgets/procurement_drawer.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
 
 class Invoices extends StatefulWidget {
   const Invoices({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _InvoicesState extends State<Invoices> {
 
   Future<void> getInvoices() async {
     var data = await http.get(
-        Uri.parse("http://localhost:8080/api/access/invoices"),
+        Uri.parse(Constants.BASE_URL + Constants.URL_INVOICES),
         headers: {"Accept": "application/json"});
 
     var jsonData = await convert.json.decode(data.body);
