@@ -1,3 +1,4 @@
+//Here comes constants
 //Constant for url path of local database
 const String BASE_URL = "http://localhost:8080/api/access";
 
